@@ -16,7 +16,7 @@ To test the project, you can use Laravel Sail. First, set up the environment var
 Once the containers are up and running, you can access a table of contents on the main page. To explore the API documentation, visit localhost/docs/api.
 
 ## Automated Article Gathering
-If you are interested in the automated process of gathering articles, you can clone the <a href=''>Python repository<a> and run the corresponding script.
+If you are interested in the automated process of gathering articles, you can clone the <a href='https://github.com/benderFF98/news-webcrawler'>Python repository<a> and run the corresponding script.
 
 
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
