@@ -1,3 +1,24 @@
+# Project Description
+
+This is a small project of mine that was originally designed as an API-only project. However, I have added some Livewire components to make it easier to demonstrate the results.
+
+## About the API
+
+This API allows you to display and create articles that are indexed on other web pages. You have the option to create your own articles, making them accessible to users of this API by redirecting them to the corresponding page. Alternatively, you can consume articles collected by a Python script in another repository.
+
+## Testing
+
+To test the project, you can use Laravel Sail. First, set up the environment variables by copying the example file and then run the following command:
+
+```shell
+./vendor/bin/sail up
+```
+Once the containers are up and running, you can access a table of contents on the main page. To explore the API documentation, visit localhost/docs/api.
+
+## Automated Article Gathering
+If you are interested in the automated process of gathering articles, you can clone the <a href=''>Python repository<a> and run the corresponding script.
+
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
