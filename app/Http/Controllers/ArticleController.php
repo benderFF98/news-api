@@ -2,26 +2,44 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ArticleRequest;
+use App\Http\Resources\ArticleResource;
 use App\Models\Article;
 use Illuminate\Http\Request;
 
 class ArticleController extends Controller
 {
-
-    /**
-     * Articles Index.
-     *
-     * This route brings all articles in the database.
-     */
     public function index()
     {
-        $articles = Article::search(\request('search'))->paginate(\request('perPage'));
+        $articles = Article::all();
 
-        return response()->json(['data' => $articles]);
+        return ArticleResource::collection($articles);
     }
+
 
     public function show(Article $article)
     {
-        return $article;
+        return new ArticleResource($article);
+    }
+
+    public function store(ArticleRequest $request)
+    {
+        $article = Article::create($request->validated());
+
+        return response()->json(['data' => $article], 201);
+    }
+
+    public function update(Article $article, ArticleRequest $request)
+    {
+        $article->update($request->validated());
+
+        return response()->json(['data' => $article], 200);
+    }
+
+    public function destroy(Article $article)
+    {
+        $article->delete();
+
+        return response()->noContent();
     }
 }

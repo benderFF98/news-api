@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,5 +16,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/articles', [\App\Http\Controllers\ArticleController::class, 'index']);
-Route::get('/articles/{article}', [\App\Http\Controllers\ArticleController::class, 'show']);
+Route::get('/health', function () {
+    return response()->json([
+        'status' => 'ok',
+    ]);
+});
+
+Route::post('/users', [UserController::class, 'store']);
+Route::post('/users/token', [UserController::class, 'getToken']);
+
+Route::middleware(['auth:sanctum'])->group(function () {
+    Route::resource('users', UserController::class)->except(['create', 'edit', 'store']);
+    Route::resource('articles', ArticleController::class)->except(['create', 'edit']);
+
+    Route::get('/test', function (Request $request) {
+        return $request->user();
+    });
+});
