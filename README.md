@@ -13,7 +13,10 @@ To test the project, you can use Laravel Sail. First, set up the environment var
 ```shell
 ./vendor/bin/sail up
 ```
-Once the containers are up and running, you can access a table of contents on the main page. To explore the API documentation, visit localhost/docs/api.
+Once the containers are up and running, you can access a table of contents on the main page. To explore the API documentation, visit ```localhost/docs/api```.
+
+### Creating a user
+After everything is setup, you can go ahead and follow the api documentation to create a user for youserlf, and then issuing an API token so you can test the API.
 
 ## Automated Article Gathering
 If you are interested in the automated process of gathering articles, you can clone the <a href='https://github.com/benderFF98/news-webcrawler'>Python repository<a> and run the corresponding script.
