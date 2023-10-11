@@ -9,6 +9,6 @@
         <script src="https://cdn.tailwindcss.com"></script>
     </head>
     <body class="antialiased">
-        @livewire('news-table')
+        @livewire('newsletter-email')
     </body>
 </html>

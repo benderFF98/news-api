@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\UserController;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -30,6 +31,13 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::resource('articles', ArticleController::class)->except(['create', 'edit']);
 
     Route::get('/test', function (Request $request) {
-        return $request->user();
+        $articles = \App\Models\Article::all();
+        $groupedArticles = $articles->groupBy('source')->toArray();
+
+        $user = User::find(1);
+
+//        dd($user->email, $articles, $groupedArticles);
+
+        Mail::to($request->user())->send(new \App\Mail\NewsletterMail($groupedArticles));
     });
 });
