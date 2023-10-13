@@ -35,9 +35,15 @@ Route::middleware(['auth:sanctum'])->group(function () {
         $groupedArticles = $articles->groupBy('source')->toArray();
 
         $user = User::find(1);
-
-//        dd($user->email, $articles, $groupedArticles);
-
         Mail::to($request->user())->send(new \App\Mail\NewsletterMail($groupedArticles));
+
+//        foreach ($groupedArticles as $key => $value) {
+//            foreach ($value as $teste) {
+//                dd($teste);
+//            }
+//        }
+//
+////        dd($user->email, $articles, $groupedArticles);
+//
     });
 });
