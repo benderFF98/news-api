@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ArticleRequest;
 use App\Http\Resources\ArticleResource;
 use App\Models\Article;
+use App\Models\Integration;
 use Illuminate\Http\Request;
 
 class ArticleController extends Controller
@@ -41,5 +42,14 @@ class ArticleController extends Controller
         $article->delete();
 
         return response()->noContent();
+    }
+
+    public function createArticle(Request $request)
+    {
+        Integration::whereToken($request->header('Authorization'))->firstOrFail();
+
+        $article = Article::create($request->all());
+
+        return response()->json(['data' => $article], 201);
     }
 }
