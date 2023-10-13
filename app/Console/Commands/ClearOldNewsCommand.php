@@ -13,6 +13,6 @@ class ClearOldNewsCommand extends Command
 
     public function handle(): void
     {
-        Article::whereDate('created_at', '<', now()->subDays(7))->delete();
+        Article::truncate();
     }
 }
