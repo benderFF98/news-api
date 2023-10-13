@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\IntegrationController;
 use App\Http\Controllers\UserController;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -23,27 +24,13 @@ Route::get('/health', function () {
     ]);
 });
 
+Route::post('/service/create-article', [ArticleController::class, 'createArticle']);
+
 Route::post('/users', [UserController::class, 'store']);
 Route::post('/users/token', [UserController::class, 'getToken']);
 
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::resource('users', UserController::class)->except(['create', 'edit', 'store']);
     Route::resource('articles', ArticleController::class)->except(['create', 'edit']);
-
-    Route::get('/test', function (Request $request) {
-        $articles = \App\Models\Article::all();
-        $groupedArticles = $articles->groupBy('source')->toArray();
-
-        $user = User::find(1);
-        Mail::to($request->user())->send(new \App\Mail\NewsletterMail($groupedArticles));
-
-//        foreach ($groupedArticles as $key => $value) {
-//            foreach ($value as $teste) {
-//                dd($teste);
-//            }
-//        }
-//
-////        dd($user->email, $articles, $groupedArticles);
-//
-    });
+    Route::resource('integrations', IntegrationController::class)->only(['store', 'destroy']);
 });
